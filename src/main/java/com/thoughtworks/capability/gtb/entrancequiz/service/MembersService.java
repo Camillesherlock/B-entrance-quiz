@@ -1,9 +1,11 @@
 package com.thoughtworks.capability.gtb.entrancequiz.service;
 
+import com.thoughtworks.capability.gtb.entrancequiz.domain.Group;
 import com.thoughtworks.capability.gtb.entrancequiz.domain.Members;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 @Service
@@ -70,5 +72,34 @@ public class MembersService {
         Members member = new Members(index,name);
         allMembers.add(member);
     }
+    static public List<Group> studentsGroup;
+    private void initGroup() {
+        studentsGroup = new ArrayList<>();
+    }
+    public List<Group> getStudentsGroup() {
+        initGroup();
+        Collections.shuffle(allMembers);
+        int perGroup = allMembers.size() / 6;
+        int restToAdd = 0;
+        if (perGroup * 6 < index) {
+            restToAdd = index - perGroup * 6;
+        }
 
+        int total = 0;
+        for (int i = 0; i < 6; i += 1) {
+            List<Members> tmp = new ArrayList<>();
+            int tmpAdd = restToAdd > 0 ? perGroup + 1 : perGroup;
+            for (int j = 0; j < tmpAdd; j += 1) {
+                if (total <= index) {
+                    tmp.add(allMembers.get(i * perGroup + j));
+                    total += 1;
+                }
+            }
+            restToAdd -= 1;
+            Group eachGroup = new Group(teamName.get(i), tmp);
+            studentsGroup.add(eachGroup);
+        }
+
+        return studentsGroup;
+    }
 };
