@@ -10,7 +10,16 @@ import java.util.List;
 public class MembersService {
     private List<Members> allMembers = initAllMembers();
     private int index = 35;
-
+    static List<String> teamName = new ArrayList<String>() {
+        {
+            add("Team 1");
+            add("Team 2");
+            add("Team 3");
+            add("Team 4");
+            add("Team 5");
+            add("Team 6");
+        }
+    };
     public List<Members> initAllMembers() {
         Members member = new Members(1,"廖浚斌");
         List<Members> members = new ArrayList<>();
@@ -62,4 +71,4 @@ public class MembersService {
         allMembers.add(member);
     }
 
-}
+};
