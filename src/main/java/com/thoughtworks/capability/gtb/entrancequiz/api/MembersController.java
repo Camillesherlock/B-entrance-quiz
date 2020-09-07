@@ -2,10 +2,8 @@ package com.thoughtworks.capability.gtb.entrancequiz.api;
 
 import com.thoughtworks.capability.gtb.entrancequiz.domain.Members;
 import com.thoughtworks.capability.gtb.entrancequiz.service.MembersService;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -23,9 +21,10 @@ public class MembersController {
         return list;
     }
 
-    @PostMapping("/add-members")
+    @PostMapping("/addMembers/{name}")
     @CrossOrigin
-    public void addMembers(String name) {
+    public ResponseEntity addMembers(@PathVariable("name") String name) {
         membersService.addMembers(name);
+        return ResponseEntity.ok().build();
     }
 }
