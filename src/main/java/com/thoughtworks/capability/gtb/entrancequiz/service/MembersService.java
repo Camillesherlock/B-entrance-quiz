@@ -18,4 +18,9 @@ public class MembersService {
         return allMembers;
     }
 
+    public void addMembers(String name){
+        Members member = new Members();
+        member.Members(2,name);
+    }
+
 }
