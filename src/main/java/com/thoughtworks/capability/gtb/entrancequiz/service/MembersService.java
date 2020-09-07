@@ -102,4 +102,11 @@ public class MembersService {
 
         return studentsGroup;
     }
+    public void changeTeamName(String originName, String name) throws Exception {
+        if (Collections.frequency(teamName, name) > 0) {
+            throw new Exception("CONFLICT Team Name");
+        } else {
+            teamName.set(teamName.indexOf(originName), name);
+        }
+    }
 };
