@@ -1,10 +1,10 @@
 package com.thoughtworks.capability.gtb.entrancequiz.domain;
 
-public class groupMembers {
+public class Members {
     private int id;
     private String name;
 
-    public void groupMembers(int id, String name) {
+    public void Members(int id, String name) {
         this.id = id;
         this.name = name;
     }
