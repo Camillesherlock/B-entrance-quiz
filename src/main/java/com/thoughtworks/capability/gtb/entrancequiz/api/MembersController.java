@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@CrossOrigin
 public class MembersController {
     private final MembersService membersService;
 
@@ -17,27 +18,23 @@ public class MembersController {
         this.membersService = membersService;
     }
     @GetMapping("/members")
-    @CrossOrigin
     public List<Members> getAllMembers() {
         List<Members> list = membersService.getAllMembers();
         return list;
     }
 
     @PostMapping("/addMembers/{name}")
-    @CrossOrigin
     public ResponseEntity addMembers(@PathVariable("name") String name) {
         membersService.addMembers(name);
         return ResponseEntity.ok().build();
     }
 
     @GetMapping("/membersGroup")
-    @CrossOrigin
     public ResponseEntity<List<Group>> getStudentsGroup() {
         return ResponseEntity.ok(membersService.getStudentsGroup());
     }
 
     @PutMapping("/team/{originName}/{name}")
-    @CrossOrigin
     public ResponseEntity changeTeamName(@PathVariable("originName") String originName,
                                          @PathVariable("name") String name) {
         try{
